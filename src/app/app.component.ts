@@ -26,7 +26,7 @@ export class AppComponent {
 
   ngAfterViewInit() {
     let mapProp = {
-      center: new google.maps.LatLng(18.5793, 73.8143),
+      center: new google.maps.LatLng(-19.9401751,-43.9341315),
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -48,10 +48,15 @@ export class AppComponent {
         editable: true,
         zIndex: 1
       },
+      polygonOptions: {
+        editable: true,
+        clickable: true,
+        draggable: true,
+      }
     });
 
     this.drawingManager.setMap(this.map);
-
+   
     google.maps.event.addListener(this.drawingManager, 'overlaycomplete', function(event) {
       if (event.type == 'polygon') {
         console.log(event.overlay.getPath().getArray().toString());
